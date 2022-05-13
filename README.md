@@ -1,9 +1,7 @@
 # Cashman Flask Project
-___
 A simple Flask CRUD backend example I'm creating studying Flask.
 The porpuse here is to implement what I'm learning.
 ## Installation
-___
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the project.
 
 ```bash
@@ -138,8 +136,6 @@ ___
     Connection: close
 
 ## Contributing
-___
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 ## License
-___
 [MIT](https://choosealicense.com/licenses/mit/)
