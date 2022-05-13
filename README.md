@@ -28,8 +28,6 @@ flask run
 
 ## Endpoints
 ### Get a list with all transactions
-___
-
 #### Request
 
 `GET /transactions/`
@@ -46,9 +44,7 @@ ___
     Connection: close
 
     [{"id":1,"transaction_type":"INCOME","value":10.23},{"id":2,"transaction_type":"INCOME","value":12.34}]
-
 ### Get a list with all incomes
-___
 #### Request
 
 `GET /incomes/`
@@ -65,9 +61,7 @@ ___
     Connection: close
 
     [{"id":1,"transaction_type":"INCOME","value":10.23},{"id":2,"transaction_type":"INCOME","value":12.34}]
-
 ### Create a new income
-___
 #### Request
 
 `POST /income/`
@@ -83,9 +77,7 @@ ___
     Location: /income/30
     Content-Length: 0
     Connection: close
-
 ### Get one income by ID
-___
 #### Request
 
 `GET /income/{id}`
@@ -102,9 +94,7 @@ ___
     Connection: close
 
     {"id":1,"transaction_type":"INCOME","value":1.23}
-
 ### Update one income by ID
-___
 #### Request
 
 `PATCH /income/{id}`
@@ -120,7 +110,6 @@ ___
     Connection: close
 
 ### Delete one income by ID
-___
 #### Request
 
 `DELETE /income/{id}`
