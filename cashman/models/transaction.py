@@ -3,30 +3,27 @@ from cashman.models.enum import TransactionType
 
 
 def get_one_transaction(id):
-    db = get_db()
-    transaction = db.execute(
+    return get_db().execute(
         'SELECT id, transaction_type, value'
         ' FROM transact'
         ' WHERE id = ?',
         (id,)
     ).fetchone()
-    return transaction
 
 
 def get_all_transactions():
-    db = get_db()
-    incomes = db.execute(
+    return get_db().execute(
         'SELECT *'
         ' FROM transact'
     ).fetchall()
-    return incomes
 
 
 def add_transaction(transaction_type, value):
     db = get_db()
     cursor = db.cursor()
     cursor.execute(
-        'INSERT INTO transact (transaction_type, value)'
+        'INSERT INTO transact'
+        ' (transaction_type, value)'
         ' VALUES (?, ?)',
         (transaction_type, value)
     )
@@ -37,7 +34,8 @@ def add_transaction(transaction_type, value):
 def update_transaction(id, transaction_type, value):
     db = get_db()
     db.execute(
-        'UPDATE transact SET transaction_type = ?, value = ?'
+        'UPDATE transact'
+        ' SET transaction_type = ?, value = ?'
         ' WHERE id = ?',
         (transaction_type, value, id)
     )
@@ -46,16 +44,17 @@ def update_transaction(id, transaction_type, value):
 
 def delete_transaction(id):
     db = get_db()
-    db.execute('DELETE FROM transact WHERE id = ?', (id,))
+    db.execute(
+        'DELETE FROM transact'
+        ' WHERE id = ?',
+        (id,)
+    )
     db.commit()
 
 
 def get_all_incomes():
-    db = get_db()
-    incomes = db.execute(
+    return get_db().execute(
         'SELECT *'
         ' FROM transact'
-        ' WHERE transaction_type = ?',
-        (TransactionType.INCOME.name, )
+        ' WHERE transaction_type = "INCOME"'
     ).fetchall()
-    return incomes
