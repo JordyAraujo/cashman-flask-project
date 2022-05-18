@@ -2,50 +2,79 @@ from cashman.db import get_db
 
 
 def get_all():
-    return get_db().execute(
-        'SELECT *'
-        ' FROM expense'
-    ).fetchall()
+    return (
+        get_db()
+        .execute(
+            """
+            SELECT
+                *
+            FROM
+                expense
+        """
+        )
+        .fetchall()
+    )
 
 
-def get_one(id):
-    return get_db().execute(
-        'SELECT id, value'
-        ' FROM expense'
-        ' WHERE id = ?',
-        (id,)
-    ).fetchone()
+def get_one(expense_id):
+    return (
+        get_db()
+        .execute(
+            """
+                SELECT
+                    id,
+                    value
+                FROM
+                    expense
+                WHERE
+                    id = ?
+            """,
+            (expense_id,),
+        )
+        .fetchone()
+    )
 
 
 def add(value):
-    db = get_db()
-    cursor = db.cursor()
+    db_conn = get_db()
+    cursor = db_conn.cursor()
     cursor.execute(
-        'INSERT INTO expense'
-        ' (value)'
-        ' VALUES (?)',
-        (value,)
+        """
+            INSERT INTO
+                expense (value)
+            VALUES
+                (?)
+        """,
+        (value,),
     )
-    db.commit()
+    db_conn.commit()
     return cursor.lastrowid
 
 
-def update(id, value):
-    db = get_db()
-    db.execute(
-        'UPDATE expense'
-        ' SET value = ?'
-        ' WHERE id = ?',
-        (value, id)
+def update(expense_id, value):
+    db_conn = get_db()
+    db_conn.execute(
+        """
+            UPDATE
+                expense
+            SET
+                value = ?
+            WHERE
+                id = ?
+        """,
+        (value, expense_id),
     )
-    db.commit()
+    db_conn.commit()
 
 
-def delete(id):
-    db = get_db()
-    db.execute(
-        'DELETE FROM expense'
-        ' WHERE id = ?',
-        (id,)
+def delete(expense_id):
+    db_conn = get_db()
+    db_conn.execute(
+        """
+            DELETE FROM
+                expense
+            WHERE id = ?
+        """,
+        (expense_id,),
     )
-    db.commit()
+    db_conn.commit()
