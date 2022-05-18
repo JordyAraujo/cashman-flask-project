@@ -23,10 +23,11 @@ def get_db():
     return g.db
 
 
-def close_db():
-    db_conn = g.pop("db", None)
+def close_db(e_none):
+    e_none = None
+    db_conn = g.pop("db", e_none)
 
-    if db_conn is not None:
+    if db_conn is not e_none:
         db_conn.close()
 
 

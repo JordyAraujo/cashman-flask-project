@@ -18,7 +18,7 @@ def add():
     return resp
 
 
-@bp.route("/expense/<int:id>", methods=["GET"])
+@bp.route("/expense/<int:expense_id>", methods=["GET"])
 def get_one(expense_id):
     return jsonify(expense.get_one(expense_id))
 
