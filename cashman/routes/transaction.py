@@ -3,12 +3,10 @@ from flask import (
     jsonify
 )
 
-from cashman.models.transaction import (
-    get_all_transactions
-)
+from cashman.models import transaction
 
 bp = Blueprint('transaction', __name__)
 
 @bp.route('/transactions')
 def get_all():
-    return jsonify(get_all_transactions())
+    return jsonify(transaction.get_all())

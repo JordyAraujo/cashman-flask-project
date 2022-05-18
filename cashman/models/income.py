@@ -1,14 +1,14 @@
 from cashman.db import get_db
 
 
-def get_all_incomes():
+def get_all():
     return get_db().execute(
         'SELECT *'
         ' FROM income'
     ).fetchall()
 
 
-def get_one_income(id):
+def get_one(id):
     return get_db().execute(
         'SELECT id, value'
         ' FROM income'
@@ -17,7 +17,7 @@ def get_one_income(id):
     ).fetchone()
 
 
-def add_income(value):
+def add(value):
     db = get_db()
     cursor = db.cursor()
     cursor.execute(
@@ -30,7 +30,7 @@ def add_income(value):
     return cursor.lastrowid
 
 
-def update_income(id, value):
+def update(id, value):
     db = get_db()
     db.execute(
         'UPDATE income'
@@ -41,7 +41,7 @@ def update_income(id, value):
     db.commit()
 
 
-def delete_income(id):
+def delete(id):
     db = get_db()
     db.execute(
         'DELETE FROM income'
