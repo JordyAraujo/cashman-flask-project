@@ -18,7 +18,10 @@ def create_app(test_config=None):
     db.init_app(app)
 
 
-    from .routes import transaction
+    from .routes import transaction, income, expense
     app.register_blueprint(transaction.bp)
+    app.register_blueprint(income.bp)
+    app.register_blueprint(expense.bp)
+    
 
     return app
